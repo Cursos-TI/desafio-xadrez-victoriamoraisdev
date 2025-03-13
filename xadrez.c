@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+//Procedimento do movimento da Torre
 void moverTorre(int casas, int dt)
 {
     
@@ -27,42 +28,50 @@ void moverTorre(int casas, int dt)
     }
 }
 
+//Procedimento do movimento do Bispo
 void moverBispo(int casasb, int db1, int db2)
 {
-    int cb;
-    for(int i = 0; i < cb; i++)
+    
+    if (casasb > 0)
     {
-        
-        if (db1 == 1)
+        for(int i = 0; i < 1; i++)
         {
-            printf("Cima\n");
-        } else if (db1 == 2)
-        {
-            printf("Baixo\n");
-        } else 
-        {
-            printf("Opção inválida 3 ");
+            
+            if (db1 == 1)
+            {
+                printf("Cima\n");
+            } else if (db1 == 2)
+            {
+                printf("Baixo\n");
+            } else 
+            {
+                printf("Opção inválida para o bispo ");
+                
+            }
+            
+            for(int j = 0; j < 1; j++) 
+            {
+                if (db2 == 3)
+            {
+                printf("Direita\n");
+            } else if (db2 == 4)
+            {
+                printf("Esquerda\n");
+            } else 
+            {
+                printf("Opção inválida para o bispo");
+                return;
+            } 
+            }
+            break;
         }
         
-        for(int j = 1; j <= 1; j++) 
-        {
-            if (db2 == 3)
-        {
-            printf("Direita\n");
-        } else if (db2 == 4)
-        {
-            printf("Esquerda\n");
-        } else 
-        {
-            printf("Opção inválida 4 ");
-        } 
-        }
-
         moverBispo(casasb - 1, db1, db2);
     }
 
 }
 
+//Procedimento do movimento da Rainha
 void moverRainha(int casasr, int dr)
 {
     
@@ -77,19 +86,23 @@ void moverRainha(int casasr, int dr)
         } else if (dr == 3)
         {
             printf("Cima\n");
-        } else
+        } else if (dr == 4)
         {
             printf("Baixo\n");
+        } else {
+            printf("Opção inválida para a rainha\n");
+            return;
         }
-        
         moverRainha(casasr - 1, dr);
+        
     }
 }
 
 int main() {
-    int b, r, ct, cb, cr;
+    int b, r, ct, cb1, cr;
     int direcaot, direcaob1, direcaob2, direcaor, direcaoc1, direcaoc2;
     
+    //Entradas da Torre
     printf("\nQuantas casas a torre vai andar: ");//Entrada da quantidade casas
     scanf("%d", &ct);
     printf("Direção da torre: \n");
@@ -100,8 +113,9 @@ int main() {
     printf("Qual direção da torre: ");//Entrada da direção
     scanf("%d", &direcaot);
     
+    //Entradas do Bispo
     printf("\nQuantas casas o bispo vai andar: ");//Entrada da quantidade casas
-    scanf("%d", &cb);
+    scanf("%d", &cb1);
     printf("Direção do bispo: \n");
     printf("(1) Cima \n");
     printf("(2) Baixo \n");
@@ -111,7 +125,8 @@ int main() {
     printf("(4) Esquerda \n");
     printf("Segunda direção [direta/esquerda]: ");//Entrada da direção
     scanf("%d", &direcaob2);
-   
+    
+    //Entradas da Rainha
     printf("\nQuantas casas a rainha vai andar: ");//Entrada da quantidade casas
     scanf("%d", &cr);
     printf("Direção da Rainha: \n");
@@ -120,8 +135,9 @@ int main() {
     printf("(3) Cima \n");
     printf("(4) Baixo \n");
     printf("Qual direção da rainha: ");//Entrada da direção
-    scanf("%d", &direcaot);
+    scanf("%d", &direcaor);
     
+    //Entradas do Cavalo
     printf("\nQuais as direções do cavalo: \n");//Entrada da quantidade casas
     printf("Direção do Cavalo: \n");
     printf("(1) Cima \n");
@@ -139,7 +155,7 @@ int main() {
 
 //Movimento do bispo
     printf("\nBispo: \n");
-    moverBispo(cb, direcaob1, direcaob2);
+    moverBispo(cb1, direcaob1, direcaob2);
 
 //Movimento da rainha
     printf("\nRainha: \n");
@@ -148,7 +164,7 @@ int main() {
 //Movimento do cavalo
     printf("\nCavalo: \n");
     
-    for (int i = 0, j = 4; i < j; i++, j--)
+    for (int i = 0, j = 2; i < j; i++)
     {
         if (direcaoc1 == 1)
         {
@@ -158,11 +174,12 @@ int main() {
             printf("Baixo\n");
         } else 
         {
-            printf("Opção inválida 1 ");
+            printf("Opção inválida para o cavalo");
         }
 
-        for(int i = 0, j = 2; i < j; i++, j--)
-        if (direcaoc2 == 3)
+    }
+    
+    if (direcaoc2 == 3)
         {
             printf("Direita\n");
         } else if (direcaoc2 == 4)
@@ -170,9 +187,8 @@ int main() {
             printf("Esquerda\n");
         } else 
         {
-            printf("Opção inválida 2 ");
+            printf("Opção inválida para o cavalo");
         } 
-    }
-    
+
     return 0;
 }
